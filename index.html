@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Backend → AI/ML Engineer Roadmap 2026–2028</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #12151c;
+    --bg-alt: #0d0f15;
+    --surface: #1a1e28;
+    --surface-2: #212633;
+    --border: #2a3040;
+    --text: #edeef0;
+    --text-dim: #8b92a3;
+    --text-faint: #5b6272;
+    --accent: #e8a33d;
+    --accent-dim: #6b5326;
+    --accent-soft: rgba(232, 163, 61, 0.12);
+    --success: #4a9b7f;
+    --success-soft: rgba(74, 155, 127, 0.14);
+    --danger: #c96a5a;
+    --radius: 10px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: 84px; }
+  html, body { height: 100%; }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f7f5f0;
+      --bg-alt: #efece4;
+      --surface: #ffffff;
+      --surface-2: #f2efe8;
+      --border: #e0dccd;
+      --text: #1c1a15;
+      --text-dim: #6b6656;
+      --text-faint: #9a947e;
+      --accent: #b5791f;
+      --accent-dim: #f0dcb5;
+      --accent-soft: rgba(181, 121, 31, 0.1);
+      --success: #2f7a5e;
+      --success-soft: rgba(47, 122, 94, 0.12);
+      --danger: #a8452f;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f5f0;
+    --bg-alt: #efece4;
+    --surface: #ffffff;
+    --surface-2: #f2efe8;
+    --border: #e0dccd;
+    --text: #1c1a15;
+    --text-dim: #6b6656;
+    --text-faint: #9a947e;
+    --accent: #b5791f;
+    --accent-dim: #f0dcb5;
+    --accent-soft: rgba(181, 121, 31, 0.1);
+    --success: #2f7a5e;
+    --success-soft: rgba(47, 122, 94, 0.12);
+    --danger: #a8452f;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ::selection { background: var(--accent-dim); }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: env(safe-area-inset-top, 0px) 0 0 0;
+  }
+  .topbar-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+  }
+  .brand .mark {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  .brand .sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    display: none;
+  }
+  @media (min-width: 640px) { .brand .sub { display: inline; } }
+
+  .topbar-actions { display: flex; align-items: center; gap: 10px; }
+  .progress-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .progress-pill strong { color: var(--accent); font-weight: 600; }
+  .theme-btn, .reset-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .theme-btn:hover, .reset-btn:hover { color: var(--text); border-color: var(--text-faint); }
+
+  /* ---------- Layout ---------- */
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    padding: 28px 20px 80px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+  }
+
+  .sidenav {
+    position: sticky;
+    top: 66px;
+    align-self: start;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+  @media (max-width: 880px) {
+    .sidenav {
+      position: static;
+      max-height: none;
+      display: flex;
+      overflow-x: auto;
+      gap: 6px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+  }
+  .sidenav a {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    padding: 7px 10px;
+    border-radius: 7px;
+    border-left: 2px solid transparent;
+    white-space: nowrap;
+  }
+  @media (max-width: 880px) {
+    .sidenav a { border-left: none; border-bottom: 2px solid transparent; flex: 0 0 auto; }
+  }
+  .sidenav a:hover { color: var(--text); text-decoration: none; background: var(--surface); }
+  .sidenav a.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-soft); }
+
+  .sidenav .nav-progress {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    padding: 2px 10px 8px;
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 8px 0 36px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .hero .eyebrow {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.2vw, 2.7rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin: 0 0 16px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero p.lede {
+    font-size: 1rem;
+    color: var(--text-dim);
+    max-width: 62ch;
+    margin: 0 0 24px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .hero-stat {
+    background: var(--surface);
+    padding: 14px 16px;
+  }
+  .hero-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .hero-stat .lbl {
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    margin-top: 2px;
+  }
+
+  /* ---------- Section ---------- */
+  .phase {
+    scroll-margin-top: 80px;
+    margin-bottom: 56px;
+  }
+  .phase-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .phase-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    background: var(--accent-soft);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .phase-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .phase-when {
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .phase-desc {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    max-width: 68ch;
+    margin: 10px 0 22px;
+  }
+
+  .track-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  .chapter {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .chapter-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .chapter-head:hover { background: var(--surface-2); }
+  .check {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1.5px solid var(--text-faint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+  }
+  .check svg { width: 12px; height: 12px; opacity: 0; }
+  .chapter.done .check { background: var(--success); border-color: var(--success); }
+  .chapter.done .check svg { opacity: 1; }
+  .chapter.done .chapter-title { color: var(--text-dim); text-decoration: line-through; text-decoration-color: var(--text-faint); }
+
+  .chapter-title-wrap { flex: 1; min-width: 0; }
+  .chapter-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .chapter-meta {
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .chevron {
+    flex: 0 0 auto;
+    color: var(--text-faint);
+    transition: transform 0.15s ease;
+    font-size: 0.7rem;
+  }
+  .chapter.open .chevron { transform: rotate(90deg); }
+
+  .chapter-body {
+    display: none;
+    padding: 4px 16px 18px 50px;
+    border-top: 1px solid var(--border);
+  }
+  .chapter.open .chapter-body { display: block; padding-top: 14px; }
+
+  .chapter-body h4 {
+    font-size: 0.72rem;
+    text-transform: none;
+    color: var(--text-faint);
+    margin: 14px 0 8px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .chapter-body h4:first-child { margin-top: 0; }
+  .chapter-body ul { margin: 0; padding-left: 18px; }
+  .chapter-body li { font-size: 0.87rem; color: var(--text-dim); margin-bottom: 5px; }
+  .chapter-body li::marker { color: var(--text-faint); }
+  .chapter-body li a { color: var(--text); border-bottom: 1px solid var(--border); }
+  .chapter-body li a:hover { border-color: var(--accent); text-decoration: none; color: var(--accent); }
+
+  .res-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .res-tag {
+    font-size: 0.74rem;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+  .res-tag a { color: inherit; }
+  .res-tag a:hover { color: var(--accent); text-decoration: none; }
+
+  .project-box {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--accent-soft);
+    border: 1px dashed var(--accent-dim);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+  .project-box strong { color: var(--accent); }
+
+  /* ---------- Company table ---------- */
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .company-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+  .company-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    margin: 0 0 4px;
+    font-weight: 600;
+  }
+  .company-card .role {
+    font-size: 0.76rem;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 10px;
+  }
+  .company-card ul { margin: 0; padding-left: 16px; }
+  .company-card li { font-size: 0.83rem; color: var(--text-dim); margin-bottom: 4px; }
+  .company-card .comp {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .company-card .comp strong { color: var(--text); }
+
+  /* ---------- Timeline table ---------- */
+  .timeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .timeline-table th {
+    text-align: left;
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    font-weight: 600;
+    padding: 10px 14px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+  .timeline-table tr:last-child td { border-bottom: none; }
+  .timeline-table td.milestone { color: var(--text); font-weight: 500; }
+  .overflow-x { overflow-x: auto; }
+
+  /* ---------- Interview checklist ---------- */
+  .interview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .interview-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+  .interview-card h4 {
+    font-size: 0.9rem;
+    margin: 0 0 10px;
+    color: var(--accent);
+  }
+  .interview-card ul { margin: 0; padding-left: 16px; }
+  .interview-card li { font-size: 0.83rem; color: var(--text-dim); margin-bottom: 6px; }
+
+  .callout {
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.87rem;
+    color: var(--text-dim);
+    margin: 20px 0;
+  }
+  .callout strong { color: var(--text); }
+
+  footer {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+    color: var(--text-faint);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="mark">Roadmap → SDE/ML 2028</span>
+      <span class="sub">Backend engineer → AI/ML roles at top product companies</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="progress-pill" id="progressPill"><strong id="progressCount">0/0</strong> chapters done</span>
+      <button class="reset-btn" id="resetBtn" title="Clear all progress">Reset</button>
+      <button class="theme-btn" id="themeBtn" title="Toggle theme">◐</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidenav" id="sidenav">
+    <a href="#overview">Overview</a>
+    <a href="#phase1">Phase 1 · Foundations</a>
+    <a href="#phase2">Phase 2 · Deep Learning</a>
+    <a href="#phase3">Phase 3 · LLM / RAG / Agents</a>
+    <a href="#phase4">Phase 4 · Specialize + Portfolio</a>
+    <a href="#phase5">Phase 5 · DSA + System Design</a>
+    <a href="#dsa-roadmap">DSA Roadmap (end-to-end)</a>
+    <a href="#dsa-by-company">DSA — by company</a>
+    <a href="#sd-roadmap">System Design Roadmap (end-to-end)</a>
+    <a href="#sd-by-company">System Design — by company</a>
+    <a href="#phase6">Phase 6 · Interview Sprint</a>
+    <a href="#companies">Target Companies</a>
+    <a href="#timeline">Full Timeline</a>
+    <div class="nav-progress" id="navProgress"></div>
+  </nav>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="eyebrow">Sep 2026 → 2028 · Personal roadmap</div>
+      <h1>From SDE-1 at TCS to <em>AI/ML engineer</em> at a top product company</h1>
+      <p class="lede">
+        You're at ~1 year 2 months experience with a backend base (Java, Spring Boot, microservices, Docker, Postgres, pgvector, RAG). This roadmap layers classical ML, deep learning, and LLM/agent engineering on top of that base, then converts it into interview-ready skill for Google, Microsoft, Amazon, Uber, JPMorgan, Swiggy, Zomato, PayPal and similar companies by 2028.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">6</div><div class="lbl">phases</div></div>
+        <div class="hero-stat"><div class="num">~18–22</div><div class="lbl">months of study</div></div>
+        <div class="hero-stat"><div class="num">7</div><div class="lbl">portfolio projects</div></div>
+        <div class="hero-stat"><div class="num">₹18–35L</div><div class="lbl">realistic target CTC</div></div>
+      </div>
+    </section>
+
+    <!-- PHASE 1 -->
+    <section class="phase" id="phase1">
+      <div class="phase-head">
+        <span class="phase-num">Phase 1</span>
+        <h2>Classical ML Foundations</h2>
+        <span class="phase-when">Month 1 – 4</span>
+      </div>
+      <p class="phase-desc">Math + classical ML, done properly — not skimmed. This is the base every later phase (deep learning, LLMs, interviews) depends on. Your CampusX playlist choice fits here.</p>
+
+      <div class="track-grid">
+
+        <div class="chapter" data-id="p1-1">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Math for ML — Linear Algebra, Probability, Calculus</div>
+              <div class="chapter-meta">Weeks 1–3 · foundation, non-negotiable</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>Vectors, matrices, dot product, matrix multiplication, eigenvalues/eigenvectors (intuition + computation)</li>
+              <li>Probability basics, Bayes' theorem, distributions (normal, binomial), expectation & variance</li>
+              <li>Derivatives, partial derivatives, gradients, chain rule (this is what makes backprop click later)</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank">3Blue1Brown — Essence of Linear Algebra</a></span>
+              <span class="res-tag"><a href="https://www.khanacademy.org/math/statistics-probability" target="_blank">Khan Academy — Probability & Statistics</a></span>
+              <span class="res-tag"><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr" target="_blank">3Blue1Brown — Essence of Calculus</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="p1-2">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Python for ML — numpy, pandas, matplotlib, scikit-learn</div>
+              <div class="chapter-meta">Week 3–4 · tooling</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>numpy array ops, broadcasting, vectorization (why loops are slow)</li>
+              <li>pandas: dataframes, groupby, merging, cleaning messy data</li>
+              <li>matplotlib/seaborn for EDA plots</li>
+              <li>scikit-learn API pattern: fit/predict/transform, pipelines</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.kaggle.com/learn/pandas" target="_blank">Kaggle — Pandas micro-course</a></span>
+              <span class="res-tag"><a href="https://numpy.org/doc/stable/user/quickstart.html" target="_blank">NumPy quickstart docs</a></span>
+              <span class="res-tag"><a href="https://scikit-learn.org/stable/tutorial/index.html" target="_blank">scikit-learn official tutorials</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="p1-3">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Classical ML — CampusX 100 Days playlist (curated)</div>
+              <div class="chapter-meta">Weeks 4–12 · core curriculum</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Watch fully</h4>
+            <ul>
+              <li>ML pipeline overview, feature engineering, handling missing data, encoding, scaling</li>
+              <li>Linear regression (simple, multiple, polynomial), regularization (Ridge/Lasso)</li>
+              <li>Logistic regression, classification metrics (precision, recall, F1, ROC-AUC, confusion matrix)</li>
+              <li>Decision trees, random forests, bagging/boosting (XGBoost, gradient boosting)</li>
+              <li>Cross-validation, hyperparameter tuning (GridSearch/RandomSearch), bias-variance tradeoff</li>
+            </ul>
+            <h4>Skim / reference only (skip deep math derivations)</h4>
+            <ul>
+              <li>SVM internals, KNN, Naive Bayes — know what they are and when to use them, don't memorize derivations</li>
+              <li>Clustering (K-Means, hierarchical), PCA/dimensionality reduction — conceptual understanding is enough</li>
+            </ul>
+            <h4>Resource</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://youtube.com/playlist?list=PLKnIA16_Rmvbr7zKYQuBfsVkjoLcJgxHH" target="_blank">CampusX — 100 Days of ML (your playlist)</a></span>
+              <span class="res-tag"><a href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank">Andrew Ng — Machine Learning Specialization</a></span>
+            </div>
+            <div class="project-box"><strong>Project 1:</strong> End-to-end classical ML project — pick a Kaggle dataset (e.g. house prices or churn prediction), do full EDA → feature engineering → model comparison → hyperparameter tuning → write up results with metrics. Push to GitHub with a clean README.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PHASE 2 -->
+    <section class="phase" id="phase2">
+      <div class="phase-head">
+        <span class="phase-num">Phase 2</span>
+        <h2>Deep Learning Fundamentals</h2>
+        <span class="phase-when">Month 4 – 7</span>
+      </div>
+      <p class="phase-desc">Neural networks from first principles, then PyTorch — the framework actually used in industry and in interviews.</p>
+
+      <div class="track-grid">
+        <div class="chapter" data-id="p2-1">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Neural Network Fundamentals</div>
+              <div class="chapter-meta">Weeks 1–3</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>Perceptron, activation functions (ReLU, sigmoid, softmax), forward pass</li>
+              <li>Backpropagation — derive it by hand at least once, don't just use autograd blindly</li>
+              <li>Loss functions (cross-entropy, MSE), optimizers (SGD, Adam), learning rate</li>
+              <li>Overfitting: dropout, batch norm, early stopping, regularization</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank">3Blue1Brown — Neural Networks series</a></span>
+              <span class="res-tag"><a href="https://www.coursera.org/specializations/deep-learning" target="_blank">deeplearning.ai — Deep Learning Specialization</a></span>
+              <span class="res-tag"><a href="https://www.youtube.com/playlist?list=PLqYmG7hTraZDdIfoiCfylFExz2R0LEo_G" target="_blank">Andrej Karpathy — Neural Networks: Zero to Hero</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="p2-2">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">PyTorch — practical deep learning</div>
+              <div class="chapter-meta">Weeks 3–6</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>Tensors, autograd, nn.Module, training loops from scratch</li>
+              <li>CNNs — convolution, pooling, image classification basics</li>
+              <li>RNNs/LSTMs — sequence modeling basics (context for why Transformers replaced them)</li>
+              <li>Training on GPU (Colab/Kaggle notebooks), saving/loading models</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank">PyTorch official "60-min blitz" + basics tutorials</a></span>
+              <span class="res-tag"><a href="https://www.learnpytorch.io/" target="_blank">Learn PyTorch for Deep Learning (free book)</a></span>
+            </div>
+            <div class="project-box"><strong>Project 2:</strong> Image classifier (CNN) trained from scratch on a dataset like CIFAR-10, plus a small text classifier (LSTM or simple Transformer) — deploy one of them behind a simple Spring Boot or FastAPI endpoint using your existing backend skills.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHASE 3 -->
+    <section class="phase" id="phase3">
+      <div class="phase-head">
+        <span class="phase-num">Phase 3</span>
+        <h2>LLMs, RAG &amp; Agents — your differentiator</h2>
+        <span class="phase-when">Month 7 – 11</span>
+      </div>
+      <p class="phase-desc">This is where your existing RAG/pgvector experience compounds. Nobody else in your applicant pool will have backend + classical ML + this combined.</p>
+
+      <div class="track-grid">
+        <div class="chapter" data-id="p3-1">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Transformers &amp; how LLMs actually work</div>
+              <div class="chapter-meta">Weeks 1–3</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>Attention mechanism, self-attention, multi-head attention (build intuition, then math)</li>
+              <li>Transformer architecture: encoder/decoder, positional encoding</li>
+              <li>Tokenization (BPE), embeddings, pretraining vs fine-tuning</li>
+              <li>Build a tiny GPT from scratch — the single best exercise for real understanding</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank">Andrej Karpathy — "Let's build GPT from scratch"</a></span>
+              <span class="res-tag"><a href="https://jalammar.github.io/illustrated-transformer/" target="_blank">Jay Alammar — The Illustrated Transformer</a></span>
+              <span class="res-tag"><a href="https://arxiv.org/abs/1706.03762" target="_blank">"Attention Is All You Need" (original paper)</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="p3-2">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Advanced RAG — beyond basic retrieval</div>
+              <div class="chapter-meta">Weeks 3–6 · builds directly on your pgvector experience</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>Chunking strategies (fixed, semantic, recursive) and why chunk size matters</li>
+              <li>Embedding models comparison (OpenAI, BGE, Cohere), when to use which</li>
+              <li>Hybrid search (BM25 + vector), reranking (cross-encoders)</li>
+              <li>RAG evaluation — RAGAS framework, faithfulness, answer relevance, context precision/recall</li>
+              <li>Vector DB internals: HNSW vs IVF indexing, pgvector vs dedicated DBs (Pinecone, Qdrant, Weaviate) tradeoffs</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://docs.ragas.io/" target="_blank">RAGAS documentation</a></span>
+              <span class="res-tag"><a href="https://python.langchain.com/docs/tutorials/rag/" target="_blank">LangChain — RAG tutorials</a></span>
+              <span class="res-tag"><a href="https://www.pinecone.io/learn/" target="_blank">Pinecone Learning Center — vector search deep dives</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="p3-3">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Agentic systems &amp; fine-tuning</div>
+              <div class="chapter-meta">Weeks 6–9</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>Function/tool calling, ReAct pattern, multi-step planning</li>
+              <li>LangGraph or CrewAI for orchestration; when agents vs simple chains</li>
+              <li>Fine-tuning basics: full fine-tune vs LoRA/QLoRA, when fine-tuning beats RAG</li>
+              <li>LLM serving basics: vLLM, quantization, latency/throughput tradeoffs</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://langchain-ai.github.io/langgraph/" target="_blank">LangGraph documentation</a></span>
+              <span class="res-tag"><a href="https://huggingface.co/docs/peft/index" target="_blank">Hugging Face — PEFT (LoRA/QLoRA) docs</a></span>
+              <span class="res-tag"><a href="https://docs.vllm.ai/" target="_blank">vLLM documentation</a></span>
+            </div>
+            <div class="project-box"><strong>Project 3 &amp; 4:</strong> (a) A production-grade RAG system with hybrid search + reranking + RAGAS evaluation dashboard, containerized with Docker, Postgres/pgvector backend. (b) An agentic workflow (LangGraph) that plans multi-step tasks and calls tools/APIs — this is your standout project, make the architecture diagram genuinely good.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHASE 4 -->
+    <section class="phase" id="phase4">
+      <div class="phase-head">
+        <span class="phase-num">Phase 4</span>
+        <h2>Specialize &amp; Build Portfolio</h2>
+        <span class="phase-when">Month 11 – 14</span>
+      </div>
+      <p class="phase-desc">Pick one lane, go deep, and get visible. This is what separates "did some courses" from "hireable."</p>
+
+      <div class="track-grid">
+        <div class="chapter" data-id="p4-1">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Pick a specialization (recommended: NLP/LLM systems)</div>
+              <div class="chapter-meta">Weeks 1–2 decision, then ongoing</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Why NLP/LLM given your background</h4>
+            <ul>
+              <li>Directly extends your RAG/pgvector work — you already have a 1-year head start here vs. computer vision or classic recsys</li>
+              <li>Highest hiring demand right now across product companies (Swiggy, Zomato, PayPal are all building GenAI features)</li>
+              <li>Combines with your backend strength: most companies need people who can serve models in production, not just train them</li>
+            </ul>
+            <h4>Deepen with</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.deeplearning.ai/short-courses/" target="_blank">deeplearning.ai short courses (RAG, agents, evaluation)</a></span>
+              <span class="res-tag"><a href="https://huggingface.co/learn/nlp-course" target="_blank">Hugging Face NLP Course</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="p4-2">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Kaggle competitions &amp; visibility</div>
+              <div class="chapter-meta">Ongoing, 1 competition minimum</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <ul>
+              <li>Complete at least 1 Kaggle competition seriously (not just a submission — iterate, read top solutions after it closes)</li>
+              <li>Write 3–4 technical blog posts (Medium/Hashnode/personal site) explaining what you built — recruiters and interviewers do check this</li>
+              <li>Contribute one real PR to an open-source LLM tool (LangChain, LlamaIndex, RAGAS) — even docs or a small bugfix counts</li>
+            </ul>
+            <div class="project-box"><strong>Project 5:</strong> A capstone: end-to-end ML system — data ingestion → training/fine-tuning → evaluation → deployment (FastAPI/Spring Boot) → monitoring. This is the project you walk an interviewer through in a system-design round.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHASE 5 -->
+    <section class="phase" id="phase5">
+      <div class="phase-head">
+        <span class="phase-num">Phase 5</span>
+        <h2>DSA &amp; System Design</h2>
+        <span class="phase-when">Runs parallel, Month 3 onward · intensifies Month 14–18</span>
+      </div>
+      <p class="phase-desc">Every one of these companies still gate on DSA and system design, regardless of ML skill. Start early, keep it light in Phase 1–3, go heavy from Month 14.</p>
+
+      <div class="track-grid">
+        <div class="chapter" data-id="p5-1">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">DSA — patterns over grinding</div>
+              <div class="chapter-meta">2–3 problems/day sustained, Java</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topic order</h4>
+            <ul>
+              <li>Arrays &amp; Strings → Two pointers, sliding window</li>
+              <li>Hashing → HashMap/Set patterns</li>
+              <li>Recursion &amp; Backtracking</li>
+              <li>Trees &amp; Graphs → BFS/DFS, topological sort, Union-Find</li>
+              <li>Dynamic Programming → 1D, 2D, knapsack patterns</li>
+              <li>Heaps, Tries, Intervals</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://neetcode.io/practice" target="_blank">NeetCode 150</a></span>
+              <span class="res-tag"><a href="https://leetcode.com/" target="_blank">LeetCode — medium difficulty focus</a></span>
+              <span class="res-tag"><a href="https://www.techinterviewhandbook.org/" target="_blank">Tech Interview Handbook</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="p5-2">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">System Design — software + ML systems</div>
+              <div class="chapter-meta">Month 14 onward</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Software system design</h4>
+            <ul>
+              <li>Load balancing, caching, DB sharding/replication, message queues (Kafka)</li>
+              <li>Classic problems: design URL shortener, rate limiter, notification system, Instagram/Twitter feed</li>
+            </ul>
+            <h4>ML system design (Amazon Applied Scientist / ML Engineer bar)</h4>
+            <ul>
+              <li>Design a recommendation system, a fraud detection pipeline, a search ranking system</li>
+              <li>Design a RAG-based customer support system at scale — this one plays directly to your strength</li>
+              <li>Data pipeline design, feature stores, model retraining/monitoring, A/B testing for ML</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://github.com/donnemartin/system-design-primer" target="_blank">System Design Primer (GitHub)</a></span>
+              <span class="res-tag"><a href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank">Grokking the System Design Interview</a></span>
+              <span class="res-tag"><a href="https://www.educative.io/courses/machine-learning-system-design" target="_blank">Grokking the Machine Learning System Design Interview</a></span>
+              <span class="res-tag"><a href="https://huyenchip.com/machine-learning-systems-design/toc.html" target="_blank">Chip Huyen — Machine Learning Systems Design</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DSA END TO END ROADMAP -->
+    <section class="phase" id="dsa-roadmap">
+      <div class="phase-head">
+        <span class="phase-num">Deep Dive</span>
+        <h2>DSA Roadmap — end to end</h2>
+        <span class="phase-when">~9 months, 1–2 hrs/day sustained</span>
+      </div>
+      <p class="phase-desc">A topic-ordered, week-by-week path from zero patterns to Google/Amazon-ready. Each stage builds on the last — don't skip ahead to graphs/DP without arrays and recursion solid, the patterns compound.</p>
+
+      <div class="track-grid">
+
+        <div class="chapter" data-id="dsa-1">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 1 — Foundations: Arrays, Strings, Hashing</div>
+              <div class="chapter-meta">Weeks 1–4 · ~40 problems</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Patterns to master</h4>
+            <ul>
+              <li>Two pointers (sorted array pairs, container with most water, trapping rain water)</li>
+              <li>Sliding window (fixed + variable size — longest substring problems, subarray sums)</li>
+              <li>Prefix sums, Kadane's algorithm</li>
+              <li>HashMap/HashSet patterns — frequency counting, two-sum family, grouping (anagrams)</li>
+              <li>String manipulation — reversal, palindrome checks, pattern matching basics</li>
+            </ul>
+            <h4>Milestone problems</h4>
+            <ul>
+              <li>Two Sum, 3Sum, Longest Substring Without Repeating Characters, Group Anagrams, Product of Array Except Self, Trapping Rain Water</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://neetcode.io/roadmap" target="_blank">NeetCode Roadmap — Arrays &amp; Hashing, Two Pointers, Sliding Window sections</a></span>
+              <span class="res-tag"><a href="https://leetcode.com/study-plan/" target="_blank">LeetCode Study Plans — "Top Interview 150"</a></span>
+            </div>
+            <div class="project-box"><strong>Checkpoint:</strong> solve a fresh Medium array/string problem in under 20 minutes without hints before moving on.</div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="dsa-2">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 2 — Recursion, Backtracking, Stacks/Queues</div>
+              <div class="chapter-meta">Weeks 5–7 · ~30 problems</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Patterns to master</h4>
+            <ul>
+              <li>Recursion fundamentals — base case, recursive tree visualization, recursion vs iteration tradeoffs</li>
+              <li>Backtracking — subsets, permutations, combinations, N-Queens, word search</li>
+              <li>Stack patterns — valid parentheses, monotonic stack (next greater element), min stack</li>
+              <li>Queue/Deque — sliding window maximum, circular queue design</li>
+            </ul>
+            <h4>Milestone problems</h4>
+            <ul>
+              <li>Subsets, Permutations, Combination Sum, N-Queens, Daily Temperatures, Largest Rectangle in Histogram</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://neetcode.io/roadmap" target="_blank">NeetCode Roadmap — Stack, Backtracking sections</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="dsa-3">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 3 — Linked Lists, Trees, Binary Search Trees</div>
+              <div class="chapter-meta">Weeks 8–11 · ~40 problems</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Patterns to master</h4>
+            <ul>
+              <li>Linked list manipulation — reversal, cycle detection (Floyd's), merge, LRU cache design</li>
+              <li>Tree traversals — inorder/preorder/postorder (recursive + iterative), level order (BFS)</li>
+              <li>BST properties — validate BST, insert/delete, kth smallest, LCA</li>
+              <li>Tree construction problems (build tree from traversals), tree diameter/depth patterns</li>
+            </ul>
+            <h4>Milestone problems</h4>
+            <ul>
+              <li>Reverse Linked List, LRU Cache, Validate BST, Lowest Common Ancestor, Binary Tree Level Order Traversal, Serialize/Deserialize Binary Tree</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://neetcode.io/roadmap" target="_blank">NeetCode Roadmap — Linked List, Trees sections</a></span>
+            </div>
+            <div class="project-box"><strong>Checkpoint:</strong> LRU Cache from scratch, no hints, correct on first compile — this exact problem is asked constantly at Amazon/Microsoft.</div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="dsa-4">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 4 — Graphs (the highest-leverage topic)</div>
+              <div class="chapter-meta">Weeks 12–16 · ~45 problems</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Patterns to master</h4>
+            <ul>
+              <li>BFS/DFS on grids and graphs — connected components, flood fill, Number of Islands (and its many variants — this shows up constantly at Amazon)</li>
+              <li>Topological sort (course schedule problems), cycle detection (directed + undirected)</li>
+              <li>Union-Find (Disjoint Set) — redundant connection, accounts merge</li>
+              <li>Shortest path — Dijkstra, Bellman-Ford basics, BFS for unweighted shortest path</li>
+              <li>Minimum Spanning Tree basics (Prim's/Kruskal's) — lower priority, know conceptually</li>
+            </ul>
+            <h4>Milestone problems</h4>
+            <ul>
+              <li>Number of Islands (+ variants), Course Schedule I/II, Clone Graph, Network Delay Time, Word Ladder, Redundant Connection</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://neetcode.io/roadmap" target="_blank">NeetCode Roadmap — Graphs, Advanced Graphs sections</a></span>
+              <span class="res-tag"><a href="https://cp-algorithms.com/graph/breadth-first-search.html" target="_blank">cp-algorithms.com — graph algorithm references</a></span>
+            </div>
+            <div class="project-box"><strong>Why this stage matters most:</strong> graph variations appear in nearly every Amazon and Google interview reported in 2026. Spend extra time here over any other topic if time is short.</div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="dsa-5">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 5 — Dynamic Programming</div>
+              <div class="chapter-meta">Weeks 17–22 · ~50 problems</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Patterns to master, in order</h4>
+            <ul>
+              <li>1D DP — climbing stairs, house robber, decode ways (build the "recursion → memoization → tabulation" muscle here first)</li>
+              <li>Knapsack family — 0/1 knapsack, coin change, partition equal subset sum</li>
+              <li>2D DP — unique paths, longest common subsequence, edit distance</li>
+              <li>String DP — palindrome partitioning, word break, longest palindromic substring</li>
+              <li>DP on intervals, DP with state machines (buy/sell stock variants)</li>
+            </ul>
+            <h4>Milestone problems</h4>
+            <ul>
+              <li>House Robber, Coin Change, Longest Common Subsequence, Edit Distance, Word Break, Best Time to Buy/Sell Stock (all variants)</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://neetcode.io/roadmap" target="_blank">NeetCode Roadmap — 1-D DP, 2-D DP sections</a></span>
+              <span class="res-tag"><a href="https://www.youtube.com/playlist?list=PLot-Xpze53leOBgcVsJBEGrHPd_7x_koV" target="_blank">Aditya Verma — Dynamic Programming playlist (pattern-based)</a></span>
+            </div>
+            <div class="project-box"><strong>Checkpoint:</strong> for any new DP problem, you should be able to define the state and transition within 5 minutes, even if the full solve takes longer. This is what interviewers actually watch for.</div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="dsa-6">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 6 — Heaps, Tries, Intervals, Bit Manipulation</div>
+              <div class="chapter-meta">Weeks 23–26 · ~30 problems</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Patterns to master</h4>
+            <ul>
+              <li>Heaps — kth largest element, top K frequent, merge K sorted lists, median from data stream</li>
+              <li>Tries — implement trie, word search II, autocomplete-style problems</li>
+              <li>Intervals — merge intervals, meeting rooms, insert interval</li>
+              <li>Bit manipulation — single number, counting bits, XOR tricks (lower priority, know basics)</li>
+            </ul>
+            <h4>Milestone problems</h4>
+            <ul>
+              <li>Kth Largest Element, Merge K Sorted Lists, Implement Trie, Merge Intervals, Meeting Rooms II</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://neetcode.io/roadmap" target="_blank">NeetCode Roadmap — Heap, Trie, Intervals sections</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="dsa-7">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 7 — Mock interviews &amp; timed drilling</div>
+              <div class="chapter-meta">Weeks 27–36 · ongoing, 2–3x/week</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>What to do</h4>
+            <ul>
+              <li>Re-solve Hard problems across all topics above, timed at 30–35 minutes each</li>
+              <li>Do 2 timed mock interviews per week (Pramp free, or interviewing.io paid) — practice narrating your approach out loud, not just solving silently</li>
+              <li>Keep an error log: every problem you fail or need hints on, note the pattern you missed and revisit it a week later</li>
+              <li>Company-specific: run through recent LeetCode "Discuss" posts tagged with your target company for the last 3–6 months</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.pramp.com/" target="_blank">Pramp — free peer mock interviews</a></span>
+              <span class="res-tag"><a href="https://interviewing.io/" target="_blank">interviewing.io — mock interviews with engineers</a></span>
+              <span class="res-tag"><a href="https://leetcode.com/discuss/interview-question" target="_blank">LeetCode Discuss — company-tagged recent interview questions</a></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout"><strong>Total volume by the end:</strong> roughly 235–260 problems across all stages if you do every milestone problem plus 2–3 similar ones per pattern. That lines up with the Google/Amazon bar from the company table below — hitting it covers every other company on your list too.</div>
+    </section>
+
+    <!-- SYSTEM DESIGN END TO END ROADMAP -->
+    <section class="phase" id="sd-roadmap">
+      <div class="phase-head">
+        <span class="phase-num">Deep Dive</span>
+        <h2>System Design Roadmap — end to end</h2>
+        <span class="phase-when">~4 months, starts after DSA Stage 4</span>
+      </div>
+      <p class="phase-desc">LLD and HLD are different skills tested separately in most loops. Build LLD first (it's more mechanical and pattern-based), then HLD (which needs LLD's building blocks plus distributed-systems concepts).</p>
+
+      <div class="track-grid">
+
+        <div class="chapter" data-id="sd-1">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 1 — OOP Fundamentals &amp; Design Patterns (LLD base)</div>
+              <div class="chapter-meta">Weeks 1–3</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>SOLID principles — with real code examples in Java, not just definitions</li>
+              <li>Creational patterns — Factory, Builder, Singleton (and why naive Singleton is a red flag in interviews)</li>
+              <li>Structural patterns — Adapter, Decorator, Facade</li>
+              <li>Behavioral patterns — Strategy, Observer, State — these three come up constantly in LLD interviews</li>
+              <li>UML basics — class diagrams, relationships (association, aggregation, composition)</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://refactoring.guru/design-patterns" target="_blank">Refactoring.guru — Design Patterns (with diagrams)</a></span>
+              <span class="res-tag"><a href="https://www.geeksforgeeks.org/system-design/solid-principle-in-programming-understand-with-real-life-examples/" target="_blank">SOLID principles with real examples</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="sd-2">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 2 — LLD practice problems (code them, don't just read)</div>
+              <div class="chapter-meta">Weeks 4–7 · 8–10 problems, fully coded</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Problems to build end-to-end in Java</h4>
+            <ul>
+              <li>Parking Lot system (classic — Amazon, Microsoft favorite)</li>
+              <li>Elevator System</li>
+              <li>Library Management System</li>
+              <li>Rate Limiter (token bucket / sliding window algorithms) — Microsoft favorite</li>
+              <li>LRU Cache as a full class design (not just the LeetCode DSA version)</li>
+              <li>BookMyShow / movie ticket booking system (Amazon favorite)</li>
+              <li>Splitwise / expense sharing system</li>
+              <li>Logging framework</li>
+            </ul>
+            <h4>How to practice</h4>
+            <ul>
+              <li>For each: write requirements → identify classes/interfaces → draw a quick class diagram → code it fully → explain your design choices out loud as if in an interview</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://github.com/ashishps1/awesome-low-level-design" target="_blank">GitHub — Awesome Low Level Design (problems + solutions)</a></span>
+              <span class="res-tag"><a href="https://www.educative.io/courses/grokking-the-low-level-design-interview-using-ood-principles" target="_blank">Grokking the Low Level Design Interview</a></span>
+            </div>
+            <div class="project-box"><strong>Checkpoint:</strong> pick any 3 of the above at random and complete a full design + code in 40 minutes each, no reference material.</div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="sd-3">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 3 — Distributed Systems Building Blocks (HLD base)</div>
+              <div class="chapter-meta">Weeks 8–11</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics — learn each concept + when to use it + its tradeoffs</h4>
+            <ul>
+              <li>Scaling — vertical vs horizontal, load balancers (round robin, least connections, consistent hashing)</li>
+              <li>Caching — cache-aside, write-through, write-back, eviction policies, Redis/Memcached use cases</li>
+              <li>Databases — SQL vs NoSQL tradeoffs, indexing, sharding strategies, replication (master-slave, master-master)</li>
+              <li>CAP theorem — and being able to argue which two you'd pick for a given system, with real justification</li>
+              <li>Message queues — Kafka vs RabbitMQ, when to use pub-sub vs point-to-point</li>
+              <li>Consistency models — strong vs eventual consistency, idempotency</li>
+              <li>Rate limiting, API gateway patterns, CDNs</li>
+              <li>Back-of-envelope estimation — practice quick math for QPS, storage, bandwidth given user counts</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://github.com/donnemartin/system-design-primer" target="_blank">System Design Primer (GitHub) — read cover to cover</a></span>
+              <span class="res-tag"><a href="https://www.youtube.com/@gkcs" target="_blank">Gaurav Sen — System Design YouTube series</a></span>
+              <span class="res-tag"><a href="https://highscalability.com/" target="_blank">High Scalability — real company architecture case studies</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="sd-4">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 4 — HLD practice problems (whiteboard/verbal + diagram)</div>
+              <div class="chapter-meta">Weeks 12–15 · 10–12 problems</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Problems to design end-to-end</h4>
+            <ul>
+              <li>URL Shortener (the canonical starting problem)</li>
+              <li>Rate Limiter (as a distributed system, not just the algorithm)</li>
+              <li>Design Twitter/X feed (fan-out on write vs read)</li>
+              <li>Design a notification system (push, email, SMS at scale) — Amazon favorite</li>
+              <li>Design an Instagram/photo-sharing service</li>
+              <li>Design a ride-sharing dispatch system — Uber favorite</li>
+              <li>Design a food delivery assignment system — Swiggy/Zomato favorite</li>
+              <li>Design a payment/wallet processing system with idempotency — PayPal/JPMorgan favorite</li>
+              <li>Design a distributed cache</li>
+              <li>Design a chat application (WhatsApp-style)</li>
+            </ul>
+            <h4>Standard structure to follow every time</h4>
+            <ul>
+              <li>Clarify requirements &amp; scope (functional + non-functional) → estimate scale (QPS, storage) → high-level architecture diagram → deep dive into 1–2 critical components → discuss tradeoffs → address bottlenecks/failure points</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank">Grokking the System Design Interview</a></span>
+              <span class="res-tag"><a href="https://github.com/karanpratapsingh/system-design" target="_blank">GitHub — karanpratapsingh/system-design (free, detailed writeups)</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="sd-5">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 5 — ML System Design (for AI/ML-track applications)</div>
+              <div class="chapter-meta">Weeks 16–18 · run this if targeting ML/Applied Scientist roles</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Topics</h4>
+            <ul>
+              <li>ML system design framework — clarify the ML problem, define metrics (offline + online), data pipeline, feature engineering/feature store, model choice, training/serving split, monitoring &amp; retraining</li>
+              <li>Design a recommendation system (this is asked everywhere — Swiggy, Amazon, Uber all have variants)</li>
+              <li>Design a fraud/risk detection pipeline (PayPal, JPMorgan favorite)</li>
+              <li>Design a search ranking system</li>
+              <li><strong>Design a RAG-based support/search system at scale</strong> — this is your strongest possible answer given your background; prepare it in real depth: chunking strategy, embedding refresh, hybrid retrieval, latency budget, evaluation/monitoring for hallucination drift</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.educative.io/courses/machine-learning-system-design" target="_blank">Grokking the Machine Learning System Design Interview</a></span>
+              <span class="res-tag"><a href="https://huyenchip.com/machine-learning-systems-design/toc.html" target="_blank">Chip Huyen — Machine Learning Systems Design (free)</a></span>
+              <span class="res-tag"><a href="https://www.youtube.com/@ExponentTV" target="_blank">Exponent — ML system design mock interviews</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter" data-id="sd-6">
+          <div class="chapter-head" onclick="toggleChapter(this)">
+            <div class="check" onclick="event.stopPropagation(); toggleDone(this)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l5 5L20 7"/></svg></div>
+            <div class="chapter-title-wrap">
+              <div class="chapter-title">Stage 6 — Mock design interviews</div>
+              <div class="chapter-meta">Weeks 16–18, overlapping with Stage 5 · ongoing after</div>
+            </div>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="chapter-body">
+            <h4>Target volume before applying</h4>
+            <ul>
+              <li>10+ HLD mocks, 6+ LLD mocks, 3+ ML system design mocks (if applying to ML roles) — this matches the target set in the interview-sprint phase below</li>
+              <li>Record yourself on 2–3 of these and review — most people talk too little out loud in early practice rounds</li>
+              <li>Get feedback from someone at or above the target level if at all possible (referral network, mentors, paid mock platforms)</li>
+            </ul>
+            <h4>Resources</h4>
+            <div class="res-tags">
+              <span class="res-tag"><a href="https://www.pramp.com/" target="_blank">Pramp — free peer system design mocks</a></span>
+              <span class="res-tag"><a href="https://interviewing.io/" target="_blank">interviewing.io — mock system design with real engineers</a></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout"><strong>Sequencing note:</strong> this System Design roadmap is meant to start once DSA Stage 4 (Graphs) is underway, around month 5–6 of the overall plan — not from day one. Trying to learn distributed systems concepts before you're comfortable with basic data structures makes both harder to retain.</div>
+    </section>
+
+    <!-- DSA BY COMPANY -->
+    <section class="phase" id="dsa-by-company">
+      <div class="phase-head">
+        <span class="phase-num">Reference</span>
+        <h2>DSA — exact bar per company</h2>
+      </div>
+      <p class="phase-desc">"Do DSA" isn't a plan. Here's the actual difficulty mix, round count, and problem volume reported by SDE-2/mid-level candidates at each company in 2026. Volumes are directional — build to the pattern, not a magic number.</p>
+
+      <div class="overflow-x">
+        <table class="timeline-table">
+          <thead>
+            <tr><th>Company</th><th>Rounds &amp; format</th><th>Difficulty mix</th><th>Volume to be ready</th><th>Focus areas</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="milestone">Google</td>
+              <td>2–3 coding rounds, 45 min each, 1–2 problems/round, must code in shared doc/IDE with no autocomplete</td>
+              <td>Medium → Hard, heavy on optimal complexity + clean code, follow-ups asking for a better approach are standard</td>
+              <td><strong>250–300 problems</strong>, skewed toward Hard once comfortable with Medium</td>
+              <td>Graphs, DP, trees, arrays/strings, design-a-data-structure questions (e.g. LRU cache); strong emphasis on writing bug-free code and clearly reasoning about time/space tradeoffs</td>
+            </tr>
+            <tr>
+              <td class="milestone">Amazon</td>
+              <td>Online Assessment (2 problems) + 2 dedicated DSA interview rounds + 1 Bar Raiser (can include a hard DSA or design problem, has veto power)</td>
+              <td>OA: Easy–Medium; onsite: Medium, often 1 Hard per round; Bar Raiser frequently Hard</td>
+              <td><strong>200–250 problems</strong>, with deliberate practice on Trees/Graphs/DP since these recur constantly in reported interviews</td>
+              <td>Graphs (esp. variations of Number of Islands, shortest path), DP, trees, arrays; every round also blends in 1–2 Leadership Principle behavioral questions — practice both together</td>
+            </tr>
+            <tr>
+              <td class="milestone">Microsoft</td>
+              <td>Online Assessment + 3–4 rounds, one is often explicitly LLD-coding combined</td>
+              <td>Medium-heavy, occasional Hard; slightly more forgiving than Google/Amazon on raw difficulty but expects clean OOP code</td>
+              <td><strong>180–220 problems</strong></td>
+              <td>Trees, strings, arrays, some LLD-flavored coding (e.g. design a rate limiter as actual code, not just talk); Azure/AI teams sometimes ask ML-adjacent coding (data processing pipelines)</td>
+            </tr>
+            <tr>
+              <td class="milestone">Uber</td>
+              <td>2 DSA rounds + 1 practical/real-world coding round often tied to a mini system (e.g. simulate a dispatch queue)</td>
+              <td>Medium, occasional Hard; less puzzle-like than Google, more "build a working solution to a realistic scenario"</td>
+              <td><strong>150–200 problems</strong></td>
+              <td>Heaps, intervals, graphs (ETA/routing-flavored), simulation-style problems; values pragmatic, working code over cleverness</td>
+            </tr>
+            <tr>
+              <td class="milestone">JPMorgan</td>
+              <td>1–2 DSA rounds + strong emphasis on a separate Java/OOP-depth round</td>
+              <td>Easy–Medium DSA bar (lower than product-company FAANG bar); OOP/Java depth round is comparatively harder</td>
+              <td><strong>120–150 problems</strong>, plus deep Java fundamentals (collections internals, multithreading, JVM basics)</td>
+              <td>Arrays, strings, basic trees/graphs, plus SOLID principles and design patterns in Java specifically</td>
+            </tr>
+            <tr>
+              <td class="milestone">Swiggy / Zomato</td>
+              <td>1–2 DSA rounds + 1 practical coding round (sometimes take-home)</td>
+              <td>Medium, occasionally Hard for senior tracks</td>
+              <td><strong>150–180 problems</strong></td>
+              <td>Arrays, hashing, graphs, DP; strong preference for candidates who can also talk through real scaling scenarios relevant to food delivery/logistics</td>
+            </tr>
+            <tr>
+              <td class="milestone">PayPal</td>
+              <td>1–2 DSA rounds + correctness/edge-case-heavy discussion</td>
+              <td>Medium bar, less emphasis on Hard, more on getting edge cases and correctness airtight (payments domain)</td>
+              <td><strong>150 problems</strong></td>
+              <td>Arrays, strings, hashing, trees; heavy focus on edge cases, idempotency-style thinking even in pure DSA rounds</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout"><strong>Practical takeaway:</strong> if you only have time to prepare for one bar, prepare for Google/Amazon's (250–300 problems, Medium/Hard, graphs+DP+trees heavy) — it covers you for every company on this list. Track your solved count by topic, not just total, so you're not just strong in arrays and weak in graphs.</div>
+    </section>
+
+    <!-- SYSTEM DESIGN BY COMPANY -->
+    <section class="phase" id="sd-by-company">
+      <div class="phase-head">
+        <span class="phase-num">Reference</span>
+        <h2>System Design — exact bar per company</h2>
+      </div>
+      <p class="phase-desc">At 2–4 years experience you'll typically face Low-Level Design (LLD, object-oriented/class design) and increasingly High-Level Design (HLD, distributed systems) both. Here's what each company weights.</p>
+
+      <div class="overflow-x">
+        <table class="timeline-table">
+          <thead>
+            <tr><th>Company</th><th>LLD vs HLD weight</th><th>Typical problems asked</th><th>What they're really checking</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="milestone">Google</td>
+              <td>HLD-focused from L4 onward; LLD shows up as part of coding rounds</td>
+              <td>Design a scalable service (e.g. autocomplete, URL shortener at Google scale), design a distributed cache, design YouTube comments/ranking</td>
+              <td>Handling massive scale, clear tradeoff articulation (consistency vs availability), back-of-envelope capacity estimation</td>
+            </tr>
+            <tr>
+              <td class="milestone">Amazon</td>
+              <td>Both — usually 1 dedicated LLD round (OOP design, SOLID) + 1 dedicated HLD round</td>
+              <td>LLD: parking lot, BookMyShow, elevator system. HLD: design a notification system, a real-time feed/hashtag tracker, a stock broker platform</td>
+              <td>Clean class design with extensibility (LLD); scalability, fault tolerance, and explicit tie-back to Leadership Principles like "Ownership" and "Think Big" (HLD)</td>
+            </tr>
+            <tr>
+              <td class="milestone">Microsoft</td>
+              <td>LLD weighted slightly higher than HLD at SDE II; HLD grows at senior levels</td>
+              <td>LLD: design a rate limiter, a logging framework, a parking system as actual class diagrams/code. HLD: design a URL shortener, a chat system</td>
+              <td>Design patterns done correctly (Factory, Strategy, Observer), maintainability, and translating design directly into working code</td>
+            </tr>
+            <tr>
+              <td class="milestone">Uber</td>
+              <td>HLD-heavy, tied to real Uber-like problems</td>
+              <td>Design ride-matching/dispatch, design surge pricing, design ETA calculation, design a ratings system</td>
+              <td>Handling real-time, high-throughput, geographically distributed data; pragmatic tradeoffs over textbook-perfect answers</td>
+            </tr>
+            <tr>
+              <td class="milestone">JPMorgan</td>
+              <td>LLD-heavy — OOP design is a bigger differentiator here than HLD</td>
+              <td>LLD: design a trading order book, an ATM system, a library management system. HLD: basic — design a payment processing flow</td>
+              <td>Strict correctness, SOLID principles, transactional consistency, thread-safety in Java-specific terms</td>
+            </tr>
+            <tr>
+              <td class="milestone">Swiggy / Zomato</td>
+              <td>HLD-focused, consumer-scale systems</td>
+              <td>Design a food delivery assignment system, design a search/ranking system for restaurants, design a notification/alerting pipeline</td>
+              <td>Handling spiky consumer traffic, caching strategy, practical database choices, ownership mentality in the discussion</td>
+            </tr>
+            <tr>
+              <td class="milestone">PayPal</td>
+              <td>Balanced LLD/HLD, correctness-first</td>
+              <td>Design a payment gateway/wallet system, design a fraud detection pipeline (ML-adjacent), design idempotent transaction processing</td>
+              <td>Consistency guarantees, idempotency, retry/failure handling — this domain punishes hand-wavy answers on correctness</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="margin-top:24px; color:var(--text-dim); font-size:0.85rem; font-weight:600;">Add-on for AI/ML-track applications (Applied Scientist / ML Engineer roles)</h4>
+      <p style="font-size:0.87rem; color:var(--text-dim); max-width:68ch;">Every company above, when hiring for an ML-adjacent role, adds an ML system design round on top of the software HLD/LLD above — it does not replace it. Prepare: designing a recommendation system end-to-end, a fraud/risk scoring pipeline, a search ranking system, and (your strongest ground) a RAG-based support/search system at scale — covering data pipeline, feature store, model serving, retraining cadence, and monitoring/drift detection.</p>
+
+      <div class="callout"><strong>Practical takeaway:</strong> prepare LLD (SOLID, design patterns, one clean end-to-end class design you can adapt) and HLD (scalability, caching, DB choice, back-of-envelope math) as two separate skills. Do at least 10 HLD mocks and 6 LLD mocks before applying broadly — this is where most experienced candidates lose otherwise-strong loops.</div>
+    </section>
+
+    <!-- PHASE 6 -->
+    <section class="phase" id="phase6">
+      <div class="phase-head">
+        <span class="phase-num">Phase 6</span>
+        <h2>Interview Sprint</h2>
+        <span class="phase-when">Month 18 – 22</span>
+      </div>
+      <p class="phase-desc">Dedicated, focused prep right before applying — mocks, behavioral prep, and closing gaps.</p>
+
+      <div class="interview-grid">
+        <div class="interview-card">
+          <h4>Coding rounds</h4>
+          <ul>
+            <li>Timed mock interviews (Pramp, interviewing.io)</li>
+            <li>Explain your approach out loud before coding — practiced explicitly</li>
+            <li>Revisit weak DSA topics identified from mocks</li>
+          </ul>
+        </div>
+        <div class="interview-card">
+          <h4>ML / applied science rounds</h4>
+          <ul>
+            <li>Be ready to derive backprop, explain bias-variance, overfitting fixes on a whiteboard</li>
+            <li>Walk through your RAG/agent projects in deep technical detail — evaluation choices, failure modes, tradeoffs made</li>
+            <li>Practice "how would you improve this model/system" follow-ups</li>
+          </ul>
+        </div>
+        <div class="interview-card">
+          <h4>System design rounds</h4>
+          <ul>
+            <li>5–8 mock system design sessions, mix of software + ML system design</li>
+            <li>Always clarify requirements first, discuss tradeoffs out loud, don't jump to a solution</li>
+          </ul>
+        </div>
+        <div class="interview-card">
+          <h4>Behavioral</h4>
+          <ul>
+            <li>STAR method stories for: conflict, failure, leadership, ambiguity — 6–8 stories covering all angles</li>
+            <li>Amazon: map every story explicitly to a Leadership Principle</li>
+            <li>Have a clear, honest narrative for the TCS → product company → target company career story</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout"><strong>Referrals matter more than cold applications.</strong> Build genuine connections on LinkedIn with engineers at target companies months before applying — a referral changes your odds of even getting a first screen dramatically, especially coming from a service company background.</div>
+    </section>
+
+    <!-- COMPANIES -->
+    <section class="phase" id="companies">
+      <div class="phase-head">
+        <span class="phase-num">Reference</span>
+        <h2>Target Companies — role fit &amp; what they test</h2>
+      </div>
+      <p class="phase-desc">What each company actually looks for at 2–4 years experience, based on their typical process. Titles and bars shift — always re-check current job postings before applying.</p>
+
+      <div class="company-grid">
+        <div class="company-card">
+          <h3>Google</h3>
+          <div class="role">Software Engineer, L4 · or ML Engineer</div>
+          <ul>
+            <li>Heavy DSA (Google-style: clean code, edge cases, complexity analysis)</li>
+            <li>System design from L4/L5 onward</li>
+            <li>Googleyness/leadership behavioral round</li>
+            <li>ML roles: strong applied ML + some theory, less pure research than DeepMind</li>
+          </ul>
+          <div class="comp"><strong>Target CTC:</strong> ₹35–55L at L4 (India)</div>
+        </div>
+
+        <div class="company-card">
+          <h3>Microsoft</h3>
+          <div class="role">SDE II · or Applied Scientist</div>
+          <ul>
+            <li>DSA (slightly less brutal than Google, still solid medium/hard bar)</li>
+            <li>System design + design-pattern discussions</li>
+            <li>Strong culture-fit / collaboration round</li>
+            <li>AI roles increasingly tied to Copilot/Azure AI teams — RAG/LLM experience directly relevant</li>
+          </ul>
+          <div class="comp"><strong>Target CTC:</strong> ₹28–45L at SDE II (India)</div>
+        </div>
+
+        <div class="company-card">
+          <h3>Amazon</h3>
+          <div class="role">SDE II · or Applied Scientist II</div>
+          <ul>
+            <li>DSA + heavy Leadership Principles weighting in every round</li>
+            <li>System design (distributed systems, scale)</li>
+            <li>Bar raiser round — separate from the hiring team, can veto</li>
+          </ul>
+          <div class="comp"><strong>Target CTC:</strong> ₹28–42L at SDE II (India)</div>
+        </div>
+
+        <div class="company-card">
+          <h3>Uber</h3>
+          <div class="role">Software Engineer II</div>
+          <ul>
+            <li>DSA + strong emphasis on real-world scale system design (dispatch, ETA, pricing systems)</li>
+            <li>Values pragmatic engineering over algorithmic cleverness</li>
+            <li>ML-adjacent roles: marketplace/pricing ML, fraud, forecasting</li>
+          </ul>
+          <div class="comp"><strong>Target CTC:</strong> ₹30–48L</div>
+        </div>
+
+        <div class="company-card">
+          <h3>JPMorgan</h3>
+          <div class="role">SDE / VP-track Engineer</div>
+          <ul>
+            <li>DSA (moderate bar), strong emphasis on Java/Spring depth if backend</li>
+            <li>System design for financial-grade reliability, consistency</li>
+            <li>AI/ML roles growing fast (fraud detection, trading signals) — but often want domain + ML combo</li>
+          </ul>
+          <div class="comp"><strong>Target CTC:</strong> ₹22–38L</div>
+        </div>
+
+        <div class="company-card">
+          <h3>Swiggy / Zomato</h3>
+          <div class="role">SDE II / ML Engineer</div>
+          <ul>
+            <li>DSA (medium bar) + strong system design for high-scale consumer systems</li>
+            <li>Practical ML: recommendation, search ranking, demand forecasting, fraud</li>
+            <li>Fast-paced, ownership-heavy interviews and culture</li>
+          </ul>
+          <div class="comp"><strong>Target CTC:</strong> ₹20–35L</div>
+        </div>
+
+        <div class="company-card">
+          <h3>PayPal</h3>
+          <div class="role">SDE II / MTS</div>
+          <ul>
+            <li>DSA + backend system design (payments = correctness/consistency-heavy)</li>
+            <li>ML roles: fraud detection, risk scoring — practical ML over research</li>
+            <li>Strong emphasis on security and reliability thinking</li>
+          </ul>
+          <div class="comp"><strong>Target CTC:</strong> ₹22–36L</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="phase" id="timeline">
+      <div class="phase-head">
+        <span class="phase-num">Summary</span>
+        <h2>Full Timeline at a Glance</h2>
+      </div>
+      <div class="overflow-x">
+        <table class="timeline-table">
+          <thead>
+            <tr><th>Period</th><th>Focus</th><th>Milestone / Output</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sep 2026 – Jan 2027</td><td>Math + classical ML (Phase 1)</td><td class="milestone">Project 1: classical ML end-to-end project on GitHub</td></tr>
+            <tr><td>Jan – Apr 2027</td><td>Deep learning + PyTorch (Phase 2)</td><td class="milestone">Project 2: CNN/LSTM model deployed via API</td></tr>
+            <tr><td>Apr – Aug 2027</td><td>Transformers, advanced RAG, agents (Phase 3)</td><td class="milestone">Projects 3–4: production RAG system + agentic workflow</td></tr>
+            <tr><td>Aug – Nov 2027</td><td>Specialization + Kaggle + open source (Phase 4)</td><td class="milestone">Project 5: capstone end-to-end ML system, blog posts, 1 OSS PR</td></tr>
+            <tr><td>Throughout (parallel)</td><td>DSA — light pace from month 3</td><td class="milestone">150–200 problems solved by month 14</td></tr>
+            <tr><td>Nov 2027 – Mar 2028</td><td>System design + DSA intensifies (Phase 5)</td><td class="milestone">10+ system design mocks completed</td></tr>
+            <tr><td>Mar – Jun 2028</td><td>Interview sprint (Phase 6)</td><td class="milestone">Mock interviews, referrals secured, applications open</td></tr>
+            <tr><td>Mid–late 2028</td><td>Applying &amp; interviewing</td><td class="milestone">Target: offer at one of the listed companies</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>One honest note:</strong> this is an ambitious but achievable plan if followed consistently — roughly 10–15 focused hours/week alongside a full-time job. The single biggest risk isn't the material, it's consistency over 18+ months. Revisit this page monthly, adjust pace, and don't skip the projects — they matter more than course completion for actually getting hired.
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Personal roadmap — built for tracking progress. Company interview bars, comp ranges, and hiring needs change; re-verify against current job postings and Glassdoor/Levels.fyi before final decisions. Progress is saved only in this browser session.
+</footer>
+
+<script>
+  function toggleChapter(headEl) {
+    const chapter = headEl.closest('.chapter');
+    chapter.classList.toggle('open');
+  }
+  function toggleDone(checkEl) {
+    const chapter = checkEl.closest('.chapter');
+    chapter.classList.toggle('done');
+    updateProgress();
+  }
+  function updateProgress() {
+    const all = document.querySelectorAll('.chapter[data-id]');
+    const done = document.querySelectorAll('.chapter[data-id].done');
+    document.getElementById('progressCount').textContent = done.length + '/' + all.length;
+    const navProgress = document.getElementById('navProgress');
+    const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+    navProgress.textContent = pct + '% complete';
+  }
+  document.getElementById('resetBtn').addEventListener('click', function() {
+    document.querySelectorAll('.chapter.done').forEach(c => c.classList.remove('done'));
+    updateProgress();
+  });
+
+  // theme toggle (per-viewer convenience only, in-memory)
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', function() {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    if (current === 'dark') {
+      root.setAttribute('data-theme', 'light');
+    } else if (current === 'light') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', 'dark');
+    }
+  });
+
+  // sidenav active state on scroll
+  const sections = document.querySelectorAll('main .phase, .hero');
+  const navLinks = document.querySelectorAll('.sidenav a');
+  function onScroll() {
+    let currentId = sections[0].id;
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 100) currentId = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  updateProgress();
+</script>
+
+</body>
+</html>
